@@ -5,7 +5,23 @@ import java.math.BigInteger
 import kotlin.test.assertEquals
 
 val primes: Sequence<BigInteger> = sequence {
-    TODO()
+    var current = BigInteger.valueOf(1L)
+    while (true) {
+        current = current.inc()
+        if (isPrime(current)) {
+            yield(current)
+        }
+    }
+}
+
+private fun isPrime(arg: BigInteger): Boolean {
+    var current = BigInteger.valueOf(2L)
+    val limit = arg.sqrt().inc()
+    while (true) {
+        if (current >= limit) return true
+        if (arg.mod(current) == BigInteger.ZERO) return false
+        current = current.inc()
+    }
 }
 
 class PrimesTest {

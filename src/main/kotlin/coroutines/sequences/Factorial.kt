@@ -1,12 +1,18 @@
 package coroutines.sequences.factorial
 
 import org.junit.Test
-import java.math.BigDecimal
 import java.math.BigInteger
 import kotlin.test.assertEquals
 
 val factorial: Sequence<BigInteger> = sequence {
-    TODO()
+    var current = BigInteger.valueOf(1L)
+    var total =  BigInteger.valueOf(1L)
+    yield(total)
+    while (true) {
+        total *= current
+        yield(total)
+        current = current.inc()
+    }
 }
 
 class FactorialTest {
